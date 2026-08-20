@@ -1,0 +1,24 @@
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        memo = {target: 1}
+        
+        def dfs(total):
+            if total in memo:
+                return memo[total]
+            if total > target:
+                return 0
+            
+            res = 0
+            for n in nums:
+                res += dfs(total + n)
+            memo[total] = res
+            return res
+        
+        dfs(0)
+        print(memo)
+        return memo[0]
+
+
+            
+
+
